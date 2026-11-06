@@ -6,29 +6,36 @@ import { AnimationGroup } from "@babylonjs/core/pure";
 
 
 export async function initGun(scene, camera) {
-    const result = await SceneLoader.ImportMeshAsync('', '/gun/', 'ak47.glb', scene);
+    const result = await SceneLoader.ImportMeshAsync('', '/gun/', 'SMG-With-Arms-1.glb', scene);
 
-    const idleAnimation = result.animationGroups.find(ag => ag.name.toLowerCase().includes("idle"));
-    const fireAnimation = result.animationGroups.find(ag => ag.name.toLowerCase().includes("fire"));
-    const reloadAnimation = result.animationGroups.find(ag => ag.name.toLowerCase().includes("reload_empty"));
-
-    const gunRoot = new TransformNode("gunRoot", scene);
-
-    gunRoot.scaling.x = -1;
+    const gunRoot = new TransformNode("Root", scene);
 
     gunRoot.parent = camera;
 
+    const importedRoots = result.transformNodes.filter((node) => !node.parent);
+    importedRoots.forEach((node) => {
+        node.parent = gunRoot;
+    });
+
     result.meshes.forEach((mesh) => {
-        mesh.parent = gunRoot;
+        if (!mesh.parent) {
+            mesh.parent = gunRoot;
+        }
         mesh.isPickable = false;
         mesh.checkCollisions = false;
     });
-    
-    gunRoot.position.set(-0.1, 0, 0);
-    gunRoot.rotation.y = -0.1;
-    gunRoot.scaling = new Vector3(0.25, 0.25, 0.25);
+
+    gunRoot.position.set(0.2, -0.4, 0.7);
+    gunRoot.rotation.y = 1.57;
+    gunRoot.scaling = new Vector3(0.3, 0.3, 0.3);
+
+    const fireAnimation = scene.getAnimationGroupByName("Fire");
+    const idleAnimation = scene.getAnimationGroupByName("Idle");
+    const reloadAnimation = scene.getAnimationGroupByName("Reload");
 
     idleAnimation.start(true);
+    fireAnimation.stop(true);
+    reloadAnimation.stop();
 
-    return { gunRoot, idleAnimation, fireAnimation, reloadAnimation };
+    return { gunRoot, fireAnimation, idleAnimation, reloadAnimation };
 };

@@ -84,8 +84,8 @@ head, body {
 #cursor {
     position: absolute;
 
-    height: 16px;
-    width: 16px;
+    height: 32px;
+    width: 32px;
 
     border-radius: 100%;
     border: 2px solid black;
@@ -98,19 +98,19 @@ head, body {
 }
 
 #cursor::before, #cursor::after {
-    box-shadow: 0 0 1px 0 red;
+    box-shadow: 4 4 1px 0 red;
 }
 
 
 #cursor::before {
     position: absolute;
 
-    height: 8px;
+    height: 20px;
     width: 2px;
 
     background-color: red;
 
-    top: 50%;
+    top: 70%;
     left: 50%;
 
     transform: translate(-50%, -50%);

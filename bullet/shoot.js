@@ -3,14 +3,21 @@ import { Vector3 } from '@babylonjs/core/Maths/math.vector';
 import { Ray } from "@babylonjs/core/Culling/ray.core";
 import "@babylonjs/core/Culling/ray";
 
-export function initReload(gunRoot, idleAnimation, fireAnimation, reloadAnimation) {
+export function initReload(gunRoot, fireAnimation, idleAnimation, reloadAnimation, scene ) {
     const keysPressed = {};
 
     const onKeyDown = (e) => { 
         keysPressed[e.code] = true; 
 
-        if (e.code === 'KeyR' && reloadAnimation) {
-            reloadAnimation.start(false); 
+        if (e.code === 'KeyR') {
+            fireAnimation.stop();
+            idleAnimation.stop();
+
+            reloadAnimation.start(false);
+
+            reloadAnimation?.onAnimationGroupEndObservable.add(() => {
+                idleAnimation.start(true);
+            });
         };
     };
 
@@ -22,3 +29,14 @@ export function initReload(gunRoot, idleAnimation, fireAnimation, reloadAnimatio
         window.addEventListener("keyup", onKeyUp);
 };
 
+export function initShoot(fireAnimation, idleAnimation, reloadAnimation, scene) {
+    const onClick = () => {
+        fireAnimation.start(false);
+
+        fireAnimation?.onAnimationGroupEndObservable.add(() => {
+            idleAnimation.start(true);
+        });
+    };
+
+    window.addEventListener('click', onClick);
+};

@@ -20,9 +20,9 @@ export function initTilt(engine, camera) {
         
             const pressingQ = keysPressed[81] === true;
             const pressingE = keysPressed[69] === true;
-            const pressingC = keysPressed[67] === true;
+            const pressingZ = keysPressed[90] === true;
 
-            if (pressingC) {
+            if (pressingZ) {
                 camera.rotation.z = 0;
             } else if (pressingQ) {
                 camera.rotation.z -= rollSpeed;

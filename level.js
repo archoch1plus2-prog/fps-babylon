@@ -16,7 +16,7 @@ import { initHemi } from "./assets/ambient.js";
 import { initMaze } from "./assets/map.js";
 import { initGun } from "./assets/gun.js";
 
-import { initReload } from "./bullet/shoot.js";
+import { initReload, initShoot } from "./bullet/shoot.js";
 
 export async function initLevel() {
     const { engine, canvas } = initEngine();
@@ -33,13 +33,21 @@ export async function initLevel() {
 
     const { hemiLight } = initHemi(scene); 
     const { mapAggregate } = await initMaze(scene);
-    const { gunRoot, idleAnimation, fireAnimation, reloadAnimation } = await initGun(scene, camera);
+    const { gunRoot, fireAnimation, idleAnimation, reloadAnimation } = await initGun(scene, camera);
 
-    initReload(gunRoot, idleAnimation, fireAnimation, reloadAnimation);
+    initReload(gunRoot, fireAnimation, idleAnimation, reloadAnimation, scene);
+    initShoot(fireAnimation, idleAnimation, reloadAnimation, scene);
 
     window.addEventListener('click', () => lock(canvas));
     window.addEventListener('keydown', fullscreen);
     window.addEventListener('resize', resizer)
+
+    const text = document.querySelector('.loading-text');
+    text.style.display = 'none';
+
+
+    const cursor = document.querySelector('.cursor');
+    cursor.style.zIndex = '9999';
 
 //-----------------------------------------------------------
 
@@ -58,10 +66,4 @@ export async function initLevel() {
     });
 
 //-----------------------------------------------------------
-
-    const text = document.querySelector('#loading-text');
-    text.style.display = 'none';
-
-    const cursor = document.querySelector('.cursor');
-    cursor.style.zIndex = '9999';
 };
