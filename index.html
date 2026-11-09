@@ -5,28 +5,47 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-        <title>FPS</title>
+        <title>RotaScript</title>
 
         <link rel="stylesheet" href="./styles/main.css">
+        <link rel="stylesheet" href="./styles/cursor.css">
+        <link rel="stylesheet" href="./styles/game.css">
+        <link rel="stylesheet" href="./styles/dashboard.css">
     </head>
     <body>
         <div id="container">
             <div class="dashboard" id="dashboard-container">
+                <div class="dashboard" id="text-container">
+                    <h1 class="dashboard text">RotaScript</h1>
+                    <h2 class="dashboard text">First Person Shooter</h2>
+                    <p class="dashboard text">Blast all of your enemies to pieces! <br> Click to PLAY:</p>
 
+                    <button type="button" class="dashboard buttons text" id="play-button">PLAY</button>
+
+                    <p class="dashboard text">Join the fun! Use cool guns and smart tactics to outsmart your enemies. Go play!</p>
+                    <p class="dashboard text">Keys: <br> WASD: Movement <br> QE: Gun Tilt <br> Z: Gun Tilt Reset <br> F: Fullscreen <br> -: FOV Down <br> =: FOV Up <br> 0: FOV Reset <br> R: Reload <br> C: Crouch <br> Left Click: Fire (Single Shot) <br> XV: Fire (Spray) </p>
+                    <h2 class="dashboard text">Announcements</h2>
+                    <p class="dashboard text">We are on version 1.0.1! If there are any bugs, please report them to: archoch1plus2@gmail.com <br> We expect to have more guns and personalization features in version 1.0.2 <br> If you have any requests for additions, please email us at: archoch1plus2@gmail.com. We will do our best to add them!</p>
+                    <p class="dashboard text">Check /details.txt!</p>
+                </div>
             </div>
+        
             <div class="canvas game" id="game-container">
-                <h1 class="loading-text">Loading May Take A Minute <br> Our Apologies <br> We Would Just Like To Say That: <br> All Of Our Assets Are Made By Us <br> Go To: "https://this-url.com/details.txt" For More Info</h2>
-                <canvas class="canvas" id="game-canvas" tabindex="0"></canvas>
+                <canvas class="game canvas" id="game-canvas" tabindex="0"></canvas>
 
-                <div id="mag">
-                    <h1><span>30/30</span></h1>
+                <div class="game mag overlay" id="mag-container">
+                    <h1 class="game mag overlay" id="mag-static"><span class="mag" id="mag-text">30/30</span></h1>
                 </div>
 
-                <div class="game cursor" id="cursor-container">
-                    <div class="game cursor" id="cursor"></div>
+                <div class="game cursor overlay" id="cursor-container">
+                    <div class="game cursor overlay" id="cursor-circle">
+                        <div class="game cursor overlay" id="cursor-cross"></div>
+                        <div class="game cursor overlay" id="cursor-ticks"></div>
+                    </div>
                 </div>
             </div>
         </div>
+        <script type="module" src="./functions/loadscreen.js"></script>
         <script type="module" src="./main.js"></script>
     </body>
 </html>

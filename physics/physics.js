@@ -8,5 +8,4 @@ export async function initPhysics(scene) {
     const plugin = new HavokPlugin(true, instance);
 
     scene.enablePhysics(new Vector3(0, -15, 0), plugin);
-
 };

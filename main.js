@@ -1,3 +1,8 @@
 import { initLevel } from "./level.js";
 
-await initLevel();
+const startBtn = document.getElementById('play-button');
+
+
+startBtn.addEventListener('click', async () => {
+    await initLevel();
+});

@@ -25,7 +25,7 @@ export async function initGun(scene, camera) {
         mesh.checkCollisions = false;
     });
 
-    gunRoot.position.set(0.2, -0.4, 0.7);
+    gunRoot.position.set(0.3, -0.4, 0.7);
     gunRoot.rotation.y = 1.57;
     gunRoot.scaling = new Vector3(0.3, 0.3, 0.3);
 

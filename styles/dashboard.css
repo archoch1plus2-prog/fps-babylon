@@ -1,0 +1,36 @@
+.dashboard {
+    pointer-events: none;
+}
+
+#dashboard-container {
+    position: absolute;
+
+    height: 100%;
+    width: 100%;
+} 
+
+#text-container {
+    font-family: FreeMono, monospace, arial;
+}
+
+.text {
+    font-family: FreeMono, monospace, arial;
+
+    position: static;
+
+    margin: 0;
+    padding: 0;
+}
+
+#play-button {
+    border: 2px solid black;
+
+    background-color: lightgray;
+
+    border-radius: 5%;
+
+    height: 40px;
+    width: 120px;
+
+    pointer-events: all;
+}

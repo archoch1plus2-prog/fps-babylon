@@ -1,0 +1,121 @@
+.cursor {
+    z-index: 9999;
+
+    pointer-events: none; 
+
+    margin: 0;
+    padding: 0;
+}
+
+#cursor-container {
+    height: 10px;
+    width: 10px;
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+}
+
+#cursor-circle {
+    position: absolute;
+
+    height: 32px;
+    width: 32px;
+
+    border-radius: 50%;
+    border: 2px solid black;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+}
+
+#cursor-cross {
+    position: absolute;
+
+    z-index: 9999;
+
+    height: 32px;
+    width: 32px;
+}
+
+#cursor-cross::before {
+    content: "";
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    background-color: cyan;
+    
+    height: 4px;
+    width: 4px;
+
+    border-radius: 50%;
+}
+
+#cursor-cross::after {
+    content: "";
+
+    position: absolute;
+
+    top: 65%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    background-color: cyan;
+
+    height: 4px;
+    width: 2px;
+
+}
+
+#cursor-ticks {
+    position: absolute;
+
+    z-index: 9999;
+
+    height: 100%;
+    width: 100%;
+}
+
+#cursor-ticks::before {
+    content: "";
+
+    position: absolute;
+
+    top: 50%;
+    left: 30%;
+
+    transform: translate(-50%, -50%);
+
+    background-color: cyan;
+
+    height: 2px;
+    width: 4px;
+}
+
+#cursor-ticks::after {
+    content: "";
+
+    position: absolute;
+
+    top: 50%;
+    left: 70%;
+
+    transform: translate(-50%, -50%);
+
+    background-color: cyan;
+
+    height: 2px;
+    width: 4px;
+}

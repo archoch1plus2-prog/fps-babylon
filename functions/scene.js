@@ -1,6 +1,7 @@
 import { Scene } from '@babylonjs/core/scene';
 import { UniversalCamera } from '@babylonjs/core/Cameras/universalCamera';
 import { Vector3 } from '@babylonjs/core/Maths/math.vector';
+import { TransformNode } from "@babylonjs/core/pure";
 
 import "@babylonjs/core/Cameras/Inputs/freeCameraKeyboardMoveInput";
 
@@ -18,11 +19,18 @@ export function initScene(engine, canvas) {
 
         camera.speed = 0.25;
 
+        camera.fov = 0.7;
+
         camera.minZ = 0.1; 
         camera.maxZ = 10000.0;
 
         canvas.tabIndex = 1;
         canvas.focus();
+
+        //const cameraAnchor = new TransformNode("cameraAnchor", scene);
+        //camera.parent = cameraAnchor;
+
+
 
         return { scene, camera };
 };
